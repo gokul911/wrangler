@@ -32,6 +32,8 @@ import io.cdap.wrangler.api.parser.NumericList;
 import io.cdap.wrangler.api.parser.Properties;
 import io.cdap.wrangler.api.parser.Ranges;
 import io.cdap.wrangler.api.parser.Text;
+import io.cdap.wrangler.api.parser.ByteSize;
+import io.cdap.wrangler.api.parser.TimeDuration;
 import io.cdap.wrangler.api.parser.TextList;
 import io.cdap.wrangler.api.parser.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -314,6 +316,20 @@ public final class RecipeVisitor extends DirectivesBaseVisitor<RecipeSymbol.Buil
       strs.add(text.substring(1, text.length() - 1));
     }
     builder.addToken(new TextList(strs));
+    return builder;
+  }
+
+  @Override
+  public RecipeSymbol.Builder visitByteSizeArg(DirectivesParser.ByteSizeArgContext ctx) {
+    String value = ctx.getText(); // this will be like "10MB" or "512KB"
+    builder.addToken(new io.cdap.wrangler.api.parser.ByteSize(value));
+    return builder;
+  }
+
+  @Override
+  public RecipeSymbol.Builder visitTimeDurationArg(DirectivesParser.TimeDurationArgContext ctx) {
+    String value = ctx.getText(); // this will be like "5min" or "1h"
+    builder.addToken(new io.cdap.wrangler.api.parser.TimeDuration(value));
     return builder;
   }
 

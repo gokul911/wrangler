@@ -159,6 +159,10 @@ text
  : String
  ;
 
+byteSizeArg: BYTE_SIZE;
+
+timeDurationArg: TIME_DURATION;
+
 number
  : Number
  ;
@@ -257,6 +261,10 @@ Number
  : Int ('.' Digit*)?
  ;
 
+BYTE_SIZE: Number BYTE_UNIT;
+
+TIME_DURATION: Number TIME_UNIT;
+
 Identifier
  : [a-zA-Z_\-] [a-zA-Z_0-9\-]*
  ;
@@ -302,6 +310,9 @@ Comment
 Space
  : [ \t\r\n\u000C]+ -> skip
  ;
+
+fragment BYTE_UNIT: ('KB' | 'MB' | 'GB' | 'TB' | 'KiB' | 'MiB') [Ii]?;  
+fragment TIME_UNIT: ('ns' | 'ms' | 's' | 'm' | 'h' | 'd');
 
 fragment Int
  : '-'? [1-9] Digit* [L]*

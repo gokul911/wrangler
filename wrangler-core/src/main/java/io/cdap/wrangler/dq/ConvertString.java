@@ -77,7 +77,11 @@ public class ConvertString {
     if (!StringUtils.isEmpty(repeatStr)) {
       removeRepeatCharPattern = Pattern.compile("(" + repeatStr + ")+");
     }
-    removeWhiteSpacesPattern = Pattern.compile("([\\s\\u0085\\p{Z}])\\1+");
+    removeWhiteSpacesPattern = Pattern.compile("([" +
+      "\\t\\n\\u000B\\f\\r \\u0085\\u00A0\\u1680\\u180E\\u2000\\u2001\\u2002\\u2003\\u2004" +
+      "\\u2005\\u2006\\u2007\\u2008\\u2009\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000" +
+      "])\\1+");
+
   }
 
   /**

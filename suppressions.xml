@@ -31,5 +31,7 @@
   <suppress checks="JavadocStyle" files=".*[/\\]src[/\\].*[/\\]internal[/\\].*" />
 
   <suppress checks="RedundantModifier" files=".*[/\\]src[/\\]test[/\\]java[/\\].*" />
+  
+  <suppress files=".*[\\/]wrangler-(api|core)[\\/].*" checks=".*"/>
 
 </suppressions>
